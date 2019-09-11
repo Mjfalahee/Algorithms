@@ -28,8 +28,7 @@ def eating_cookies(n, cache=None):
   else:
     if not cache:
       cache = {i: 0 for i in range(0, n+1)}
-    result = (eating_cookies(n-1, cache) + eating_cookies(n-2, cache) + eating_cookies(n-3, cache))
-    cache[n] = result
+    cache[n] = (eating_cookies(n-1, cache) + eating_cookies(n-2, cache) + eating_cookies(n-3, cache))
   
   return cache[n]
     
