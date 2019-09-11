@@ -7,13 +7,9 @@ import sys
 # recursive solution
 
 def eating_cookies(n, cache=None):
-  ways_to_eat = 0
-  #Base case == 1
-  if n == 1:
-    return 1
   
   #I don't understand why the test case has zero cookies with a way to eat them, but I'm accounting for that here.
-  elif n == 0:
+  if n == 0:
     return 1
   
   #if there aren't cookies, you can't eat them.
