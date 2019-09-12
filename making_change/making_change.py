@@ -10,28 +10,30 @@ def making_change(amount, denominations, cache=None):
   if amount == 0:
     return 1
 
+  #second base case? I think these should be called error cases
   elif amount < 0 or denominations == []:
     return 1
 
-  elif cache and (cache[amount] > 0):
-    return cache[amount]
 
   else:
     if not cache:
       cache = {i: 0 for i in range(0, amount+1)}
       cache[0] = 1
+
+    #iterate through the coins in denominations
     for coin in denominations:
-      # print('coin', coin)
+
+      #iterate through every amount between the coin's value and the amount
       for higher_amount in range(coin, amount+1):
-        # print('higher_amount', higher_amount)
+
+        #the difference between the amount and the coin is one way to solve for that amount. Add it to the cache.
         difference = higher_amount - coin
         cache[higher_amount] += cache[difference]
 
-  # print(cache)
-  return cache[amount]
+        #once you iterate through all of the coins, you'll have a running tally of each amount between (inclusive) 0 and the target value
+        #with the number of ways to make change
 
-# making_change(5, [1,5,10])
-# print(making_change(11, [1,5,10]))
+  return cache[amount]
 
 if __name__ == "__main__":
   # Test our your implementation from the command line
