@@ -12,7 +12,7 @@ def rock_paper_scissors(n):
 
   def rpshelper(n, rps):
     #base case or ceiling, if (len(rps) == 0) ==> result.append([]) ==> result = [[]]
-    #if ceiling (rps has been hit length n), append it to the result array
+    #if ceiling (rps has hit length n), append it to the result array
     if len(rps) == n:
       return result.append(rps)
 
