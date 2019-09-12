@@ -10,6 +10,9 @@ def making_change(amount, denominations, cache=None):
   if amount == 0:
     return 1
 
+  elif amount < 0 or denominations == []:
+    return 1
+
   elif cache and (cache[amount] > 0):
     return cache[amount]
 
@@ -18,16 +21,17 @@ def making_change(amount, denominations, cache=None):
       cache = {i: 0 for i in range(0, amount+1)}
       cache[0] = 1
     for coin in denominations:
+      print('coin', coin)
       for higher_amount in range(coin, amount+1):
+        print('higher_amount', higher_amount)
         difference = higher_amount - coin
-        print(difference)
-        print(cache)
+        cache[amount] = cache[difference] + cache[amount]
 
   
-  return
+  return cache[amount]
 
-making_change(25, [1,5,10])
-
+making_change(5, [1,5,10])
+print(making_change(11, [1,5,10]))
 
 if __name__ == "__main__":
   # Test our your implementation from the command line
